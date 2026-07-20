@@ -51,3 +51,41 @@ public class ProfileController {
         profileService.deleteProfile(id);
         return Map.of("deletedName", profile.getName());
     }
+
+    @PatchMapping("/{id}/status")
+    public Map<String, String> updateStatus(@PathVariable UUID id, @RequestBody UpdateStatusRequest request) {
+        profileService.updateStatus(id, request.status());
+        return Map.of("status", request.status().trim());
+    }
+
+    @PatchMapping("/{id}/quote")
+    public Map<String, String> updateQuote(@PathVariable UUID id, @RequestBody UpdateQuoteRequest request) {
+        profileService.updateQuote(id, request.quote());
+        return Map.of("quote", request.quote().trim());
+    }
+
+    /** Mode B: paste-a-URL picture update. */
+    @PatchMapping("/{id}/picture")
+    public Map<String, String> updatePictureUrl(@PathVariable UUID id, @RequestBody UpdatePictureRequest request) {
+        profileService.updatePictureUrl(id, request.pictureUrl());
+        return Map.of("picture", request.pictureUrl().trim());
+    }
+
+    /**
+     * Mode A: file upload. Compresses to WebP, uploads to the Supabase
+     * Storage bucket, persists the URL, and returns it in one round trip
+     * (unlike the Vercel-Blob design, there's no separate
+     * "upload then PATCH" step needed -- this server does both itself).
+     */
+    @PostMapping(value = "/{id}/avatar", consumes = "multipart/form-data")
+    public PictureResult uploadAvatar(@PathVariable UUID id, @RequestParam("file") MultipartFile file) {
+        String url = profileService.updatePictureFromUpload(id, file);
+        return new PictureResult(url);
+    }
+
+    @PostMapping("/{id}/friends")
+    public Map<String, String> addFriend(@PathVariable UUID id, @RequestBody FriendActionRequest request) {
+        String friendName = profileService.addFriend(id, request.friendName());
+        return Map.of("friendName", friendName);
+    }
+
