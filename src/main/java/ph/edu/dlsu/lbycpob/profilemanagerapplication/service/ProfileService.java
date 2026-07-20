@@ -114,6 +114,33 @@ public class ProfileService {
      * returned public URL. Returns that URL so the caller can respond
      * with it directly.
      */
+
     @Transactional
+    public String updatePictureFromUpload(UUID id, MultipartFile file) {
+        if (file == null || file.isEmpty()) {
+            throw new IllegalArgumentException("No file was uploaded.");
+        }
+        String contentType = file.getContentType();
+        if (contentType == null || !contentType.startsWith("image/")) {
+            throw new IllegalArgumentException("The selected file is not an image.");
+        }
+
+        Profile profile = getProfile(id);
+
+        byte[] original;
+        try {
+            original = file.getBytes();
+        } catch (Exception e) {
+            throw new IllegalStateException("Could not read the uploaded file.");
+        }
+
+        byte[] webp = imageCompressionService.compressToWebp(original);
+        String path = "avatars/" + id + ".webp";
+        String publicUrl = supabaseStorageService.uploadAndGetPublicUrl(path, webp, "image/webp");
+
+        profile.setPicture(publicUrl);
+        return publicUrl;
+    }
+
 
 
