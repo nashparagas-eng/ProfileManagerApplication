@@ -68,3 +68,29 @@ public class Friend {
         this.friendId = friendId;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Friend friend)) return false;
+        return Objects.equals(id, friend.id)
+                && Objects.equals(profileId, friend.profileId)
+                && Objects.equals(friendId, friend.friendId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, profileId, friendId);
+    }
+
+    @Override
+    public String toString() {
+        return "Friend{" +
+                "id=" + id +
+                ", profileId=" + profileId +
+                ", friendId=" + friendId +
+                '}';
+    }
+
+
+
