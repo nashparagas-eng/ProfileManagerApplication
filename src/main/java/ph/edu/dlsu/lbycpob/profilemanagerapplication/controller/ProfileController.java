@@ -89,3 +89,11 @@ public class ProfileController {
         return Map.of("friendName", friendName);
     }
 
+    @DeleteMapping("/{id}/friends")
+    public Map<String, String> removeFriend(@PathVariable UUID id, @RequestBody FriendActionRequest request) {
+        String friendName = profileService.removeFriend(id, request.friendName());
+        return Map.of("friendName", friendName);
+    }
+}
+
+
