@@ -32,3 +32,25 @@ public class Dtos {
                     friends.stream().map(NameRef::of).toList());
         }
     }
+
+    public record NewProfileRequest(String name) {
+    }
+
+    public record UpdateStatusRequest(String status) {
+    }
+
+    public record UpdateQuoteRequest(String quote) {
+    }
+
+    public record UpdatePictureRequest(String pictureUrl) {
+    }
+
+    public record FriendActionRequest(String friendName) {
+    }
+
+    public record PictureResult(String url) {
+    }
+
+    public record ApiError(String error) {
+    }
+}
