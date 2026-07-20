@@ -142,5 +142,31 @@ public class ProfileService {
         return publicUrl;
     }
 
+    /**
+     * Adds a bidirectional friendship. Checks EACH direction independently
+     * rather than assuming they're always in sync -- if the two rows ever
+     * became asymmetric (e.g. leftover data from before this method was
+     * transactional, or any other partial write), a naive "check forward,
+     * then blindly insert both" approach hits the unique constraint on the
+     * direction that already exists and rolls back the whole transaction,
+     * including the direction that legitimately needed to be inserted.
+     */
+    @Transactional
+    public String addFriend(UUID profileId, String friendName) {
+        Profile self = getProfile(profileId);
+        Profile friend = findByNameOrThrow(friendName);
+
+        if (friend.getId().equals(self.getId())) {
+            throw new IllegalArgumentException("A profile cannot be friends with itself.");
+        }
+
+        boolean forwardExists = friendRepository.existsByProfileIdAndFriendId(self.getId(), friend.getId());
+        boolean reverseExists = friendRepository.existsByProfileIdAndFriendId(friend.getId(), self.getId());
+
+        if (forwardExists && reverseExists) {
+            throw new IllegalStateException("\"" + friend.getName() + "\" is already a friend.");
+        }
+
+
 
 
