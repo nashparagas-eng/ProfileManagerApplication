@@ -11,3 +11,13 @@ import ph.edu.dlsu.lbycpob.profilemanager.service.ProfileService;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/profiles")
+public class ProfileController {
+
+    private final ProfileService profileService;
+
+    public ProfileController(ProfileService profileService) {
+        this.profileService = profileService;
+    }
