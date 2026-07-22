@@ -23,3 +23,9 @@ import java.util.UUID;
 @Entity
 @Table(name = "profiles")
 public class Profile {
+
+    @Id
+    @UuidGenerator
+    @Column(columnDefinition = "uuid", updatable = false, nullable = false)
+    private UUID id;
+}
