@@ -59,3 +59,6 @@ public class ImageCompressionService {
         }
 
         double scale = Math.min((double) MAX_DIMENSION / width, (double) MAX_DIMENSION / height);
+        int newWidth = Math.max(1, (int) Math.round(width * scale));
+        int newHeight = Math.max(1, (int) Math.round(height * scale));
+
