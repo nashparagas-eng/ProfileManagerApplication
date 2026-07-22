@@ -51,6 +51,14 @@ public class SupabaseStorageService {
      * must already exist and be set to Public in the Supabase dashboard --
      * this method doesn't create buckets or manage their visibility.
      */
+    public String uploadAndGetPublicUrl(String path, byte[] content, String contentType) {
+        if (secretKey == null || secretKey.isBlank()) {
+            throw new IllegalStateException(
+                    "SUPABASE_SECRET_KEY is not configured -- avatar upload is unavailable. " +
+                            "Set it to your Supabase Secret API key (sb_secret_...) from " +
+                            "Project Settings -> API Keys -> Publishable and secret API keys, " +
+                            "or use the 'paste an image URL' field instead.");
+        }
 
 
 }
