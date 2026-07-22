@@ -168,4 +168,14 @@ public class Profile {
             this.name = name;
             return this;
         }
+
+        public Builder status(String status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder quote(String quote) {
+            this.quote = quote;
+            return this;
+        }
 }
