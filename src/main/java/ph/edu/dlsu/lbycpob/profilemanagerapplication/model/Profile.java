@@ -37,4 +37,7 @@ public class Profile {
 
     @Column(nullable = false)
     private String quote = "";
+
+    @Column(nullable = false)
+    private String picture = "https://6fkrqtkwbcnqsois.public.blob.vercel-storage.com/avatars/default.webp";
 }
