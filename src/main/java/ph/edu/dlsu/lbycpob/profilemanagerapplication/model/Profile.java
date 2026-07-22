@@ -140,4 +140,22 @@ public class Profile {
     public static Builder builder() {
         return new Builder();
     }
+
+    /**
+     * Manual replacement for Lombok's @Builder. Fields with DB-side
+     * defaults (status, quote, picture) are pre-seeded here so that
+     * Profile.builder().name("x").build() still satisfies the NOT NULL
+     * constraints on those columns even if the caller never sets them --
+     * mirroring what @Builder.Default previously guaranteed.
+     */
+    public static final class Builder {
+        private UUID id;
+        private String name;
+        private String status = "";
+        private String quote = "";
+        private String picture = "https://6fkrqtkwbcnqsois.public.blob.vercel-storage.com/avatars/default.webp";
+        private OffsetDateTime createdAt;
+
+        private Builder() {
+        }
 }
