@@ -45,6 +45,12 @@ public class SupabaseStorageService {
         this.secretKey = secretKey;
         this.bucket = bucket;
     }
+    /**
+     * Uploads (or overwrites, via x-upsert) the given bytes at {@code path}
+     * within the configured bucket, and returns the public URL. The bucket
+     * must already exist and be set to Public in the Supabase dashboard --
+     * this method doesn't create buckets or manage their visibility.
+     */
 
 
 }
