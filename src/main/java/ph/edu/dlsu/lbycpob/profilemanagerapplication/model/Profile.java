@@ -99,4 +99,12 @@ public class Profile {
     public void setPicture(String picture) {
         this.picture = picture;
     }
+
+    public OffsetDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(OffsetDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }
