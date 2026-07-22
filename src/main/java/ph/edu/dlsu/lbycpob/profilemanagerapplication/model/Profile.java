@@ -28,4 +28,7 @@ public class Profile {
     @UuidGenerator
     @Column(columnDefinition = "uuid", updatable = false, nullable = false)
     private UUID id;
+
+    @Column(nullable = false, unique = true)
+    private String name;
 }
