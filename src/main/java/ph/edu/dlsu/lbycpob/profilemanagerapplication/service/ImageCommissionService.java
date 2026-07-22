@@ -53,3 +53,9 @@ public class ImageCompressionService {
     private BufferedImage resize(BufferedImage original) {
         int width = original.getWidth();
         int height = original.getHeight();
+
+        if (width <= MAX_DIMENSION && height <= MAX_DIMENSION) {
+            return original; // never upscale, matches the original pipeline's withoutEnlargement
+        }
+
+        double scale = Math.min((double) MAX_DIMENSION / width, (double) MAX_DIMENSION / height);
