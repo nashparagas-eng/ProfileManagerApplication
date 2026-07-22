@@ -59,4 +59,12 @@ public class Profile {
         this.picture = picture;
         this.createdAt = createdAt;
     }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 }
