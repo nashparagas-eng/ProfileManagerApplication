@@ -37,5 +37,14 @@ public class SupabaseStorageService {
     private final String secretKey;
     private final String bucket;
 
+    public SupabaseStorageService(
+            @Value("${app.supabase.url}") String supabaseUrl,
+            @Value("${app.supabase.secret-key}") String secretKey,
+            @Value("${app.supabase.avatar-bucket}") String bucket) {
+        this.supabaseUrl = trimTrailingSlash(supabaseUrl);
+        this.secretKey = secretKey;
+        this.bucket = bucket;
+    }
+
 
 }
