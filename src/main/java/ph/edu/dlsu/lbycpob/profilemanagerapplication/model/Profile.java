@@ -119,4 +119,21 @@ public class Profile {
                 && Objects.equals(picture, profile.picture)
                 && Objects.equals(createdAt, profile.createdAt);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, status, quote, picture, createdAt);
+    }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", status='" + status + '\'' +
+                ", quote='" + quote + '\'' +
+                ", picture='" + picture + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }
