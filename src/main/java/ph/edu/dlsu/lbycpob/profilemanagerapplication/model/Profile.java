@@ -31,4 +31,10 @@ public class Profile {
 
     @Column(nullable = false, unique = true)
     private String name;
+
+    @Column(nullable = false)
+    private String status = "";
+
+    @Column(nullable = false)
+    private String quote = "";
 }
