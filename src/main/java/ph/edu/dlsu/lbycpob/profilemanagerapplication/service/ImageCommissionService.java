@@ -29,5 +29,26 @@ public class ImageCompressionService {
     private static final float WEBP_QUALITY = 0.8f; // 0.0 - 1.0
 
 
+    /** @throws IllegalArgumentException if the bytes aren't a decodable image */
+    public byte[] compressToWebp(byte[] originalBytes) {
+        BufferedImage original;
+        try {
+            original = ImageIO.read(new ByteArrayInputStream(originalBytes));
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Could not read the uploaded file as an image.");
+        }
+        if (original == null) {
+            throw new IllegalArgumentException("The uploaded file is not a supported image format.");
+        }
+
+        BufferedImage resized = resize(original);
+
+        try {
+            return encodeToWebp(resized);
+        } catch (IOException e) {
+            throw new IllegalStateException("Failed to encode image as WebP: " + e.getMessage(), e);
+        }
+    }
+
 }
 
