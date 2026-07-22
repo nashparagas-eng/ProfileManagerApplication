@@ -188,4 +188,8 @@ public class Profile {
             this.createdAt = createdAt;
             return this;
         }
+
+        public Profile build() {
+            return new Profile(id, name, status, quote, picture, createdAt);
+        }
 }
