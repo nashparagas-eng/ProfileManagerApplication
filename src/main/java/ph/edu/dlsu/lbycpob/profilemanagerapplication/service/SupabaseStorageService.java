@@ -60,5 +60,16 @@ public class SupabaseStorageService {
                             "or use the 'paste an image URL' field instead.");
         }
 
+        URI uploadUri = URI.create(supabaseUrl + "/storage/v1/object/" + bucket + "/" + path);
 
-}
+        HttpRequest request = HttpRequest.newBuilder(uploadUri)
+                .header("apikey", secretKey)
+                .header("Authorization", "Bearer " + secretKey)
+                .header("Content-Type", contentType)
+                .header("x-upsert", "true") // overwrite any existing file at this path
+                .POST(BodyPublishers.ofByteArray(content))
+                .build();
+
+
+
+    }
