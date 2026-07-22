@@ -50,5 +50,6 @@ public class ImageCompressionService {
         }
     }
 
-}
-
+    private BufferedImage resize(BufferedImage original) {
+        int width = original.getWidth();
+        int height = original.getHeight();
