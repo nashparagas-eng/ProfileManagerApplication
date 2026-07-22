@@ -76,6 +76,18 @@ public class SupabaseStorageService {
             throw new IllegalStateException("Could not reach Supabase Storage: " + e.getMessage(), e);
         }
 
+        if (response.statusCode() < 200 || response.statusCode() >= 300) {
+            throw new IllegalStateException(
+                    "Supabase Storage upload failed (HTTP " + response.statusCode() + "): " + response.body());
+        }
 
-
+        return supabaseUrl + "/storage/v1/object/public/" + bucket + "/" + path;
     }
+
+    private static String trimTrailingSlash(String url) {
+        return url.endsWith("/") ? url.substring(0, url.length() - 1) : url;
+    }
+}
+
+
+
