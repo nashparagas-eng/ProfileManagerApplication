@@ -62,3 +62,15 @@ public class ImageCompressionService {
         int newWidth = Math.max(1, (int) Math.round(width * scale));
         int newHeight = Math.max(1, (int) Math.round(height * scale));
 
+        BufferedImage resized = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = resized.createGraphics();
+        try {
+            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g.drawImage(original, 0, 0, newWidth, newHeight, null);
+        } finally {
+            g.dispose();
+        }
+        return resized;
+    }
