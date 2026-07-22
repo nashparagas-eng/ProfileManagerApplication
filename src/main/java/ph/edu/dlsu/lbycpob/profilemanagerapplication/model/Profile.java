@@ -9,3 +9,14 @@ import org.hibernate.annotations.UuidGenerator;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.UUID;
+
+/**
+ * Maps to public.profiles. Field-for-field match with the schema:
+ * <p>
+ * id          uuid primary key default gen_random_uuid()
+ * name        text not null, unique
+ * status      text not null default ''
+ * quote       text not null default ''
+ * picture     text not null default '<vercel blob default avatar url>'
+ * created_at  timestamptz not null default now()
+ */
