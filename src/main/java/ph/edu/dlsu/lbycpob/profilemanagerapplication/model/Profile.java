@@ -1,4 +1,5 @@
-package ph.edu.dlsu.lbycpob.profilemanagerapplication.model;
+package ph.edu.dlsu.lbycpob.profilemanager.model;
 
-public class Profile {
-}
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
