@@ -20,3 +20,6 @@ import java.util.UUID;
  * picture     text not null default '<vercel blob default avatar url>'
  * created_at  timestamptz not null default now()
  */
+@Entity
+@Table(name = "profiles")
+public class Profile {
