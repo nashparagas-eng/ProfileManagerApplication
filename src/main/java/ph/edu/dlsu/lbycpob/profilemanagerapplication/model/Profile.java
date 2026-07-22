@@ -1,4 +1,1 @@
-package ph.edu.dlsu.lbycpob.profilemanagerapplication.model;
-
-public class Profile {
-}
+package ph.edu.dlsu.lbycpob.profilemanager.model;
