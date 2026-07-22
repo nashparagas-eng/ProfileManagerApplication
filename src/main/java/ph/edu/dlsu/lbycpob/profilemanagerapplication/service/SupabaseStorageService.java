@@ -29,4 +29,13 @@ import java.time.Duration;
  * same secret key -- Supabase requires the two to match exactly.
  */
 public class SupabaseStorageService {
+    private final HttpClient httpClient = HttpClient.newBuilder()
+            .connectTimeout(Duration.ofSeconds(20))
+            .build();
+
+    private final String supabaseUrl;
+    private final String secretKey;
+    private final String bucket;
+
+
 }
