@@ -69,6 +69,12 @@ public class SupabaseStorageService {
                 .header("x-upsert", "true") // overwrite any existing file at this path
                 .POST(BodyPublishers.ofByteArray(content))
                 .build();
+        HttpResponse<String> response;
+        try {
+            response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            throw new IllegalStateException("Could not reach Supabase Storage: " + e.getMessage(), e);
+        }
 
 
 
