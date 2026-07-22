@@ -136,4 +136,8 @@ public class Profile {
                 ", createdAt=" + createdAt +
                 '}';
     }
+
+    public static Builder builder() {
+        return new Builder();
+    }
 }
