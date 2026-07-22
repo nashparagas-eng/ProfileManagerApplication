@@ -178,4 +178,14 @@ public class Profile {
             this.quote = quote;
             return this;
         }
+
+        public Builder picture(String picture) {
+            this.picture = picture;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
 }
