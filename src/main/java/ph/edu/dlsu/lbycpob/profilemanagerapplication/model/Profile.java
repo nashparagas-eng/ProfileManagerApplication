@@ -47,4 +47,7 @@ public class Profile {
     // that follows profile creation).
     @Column(name = "created_at", insertable = false, updatable = false)
     private OffsetDateTime createdAt;
+
+    public Profile() {
+    }
 }
