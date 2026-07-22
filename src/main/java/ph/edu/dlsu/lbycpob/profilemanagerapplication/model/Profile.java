@@ -50,4 +50,13 @@ public class Profile {
 
     public Profile() {
     }
+
+    public Profile(UUID id, String name, String status, String quote, String picture, OffsetDateTime createdAt) {
+        this.id = id;
+        this.name = name;
+        this.status = status;
+        this.quote = quote;
+        this.picture = picture;
+        this.createdAt = createdAt;
+    }
 }
