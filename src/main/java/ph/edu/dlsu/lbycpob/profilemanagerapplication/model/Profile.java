@@ -107,4 +107,16 @@ public class Profile {
     public void setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Profile profile)) return false;
+        return Objects.equals(id, profile.id)
+                && Objects.equals(name, profile.name)
+                && Objects.equals(status, profile.status)
+                && Objects.equals(quote, profile.quote)
+                && Objects.equals(picture, profile.picture)
+                && Objects.equals(createdAt, profile.createdAt);
+    }
 }
